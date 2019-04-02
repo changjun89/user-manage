@@ -1,7 +1,8 @@
-package me.anpan.usermanage.user;
+package me.anpan.usermanage.member;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-public class User {
+@NoArgsConstructor
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +28,7 @@ public class User {
     private String email;
 
     @Builder
-    public User(@NotNull String userId, @NotNull String password, @NotNull String name, @NotNull String email) {
+    public Member(@NotNull String userId, @NotNull String password, @NotNull String name, @NotNull String email) {
         this.userId = userId;
         this.password = password;
         this.name = name;
