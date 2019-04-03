@@ -62,19 +62,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse2">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/">Posts</a></li>
-                <li><a href="/user/login" role="button">로그인</a></li>
-                <li><a href="/user/form" role="button">회원가입</a></li>
-                <!--
-                <li><a href="#loginModal" role="button" data-toggle="modal">로그인</a></li>
-                <li><a href="#registerModal" role="button" data-toggle="modal">회원가입</a></li>
-                -->
-                <li><a href="#" role="button">로그아웃</a></li>
-                <li><a href="#" role="button">개인정보수정</a></li>
-            </ul>
-        </div>
+        <div th:include="/member/fragment/menubar.html :: menubar"></div>
     </div>
 </div>
 
@@ -99,13 +87,6 @@
                             </div>
                         </div>
                     </div>
-                    <tr th:each="user2 : ${user3}">
-                        <th scope="row" th:text="{user2.id}"></th>
-                        <td th:text="{user.id}"></td>
-                        <td th:text="{user.name}"></td>
-                        <td th:text="{user.email}"></td>
-                        <td><a href="#" class="btn btn-success" role="button">수정</a></td>
-                    </tr>
                 </li>
                 <li>
                     <div class="wrap">
