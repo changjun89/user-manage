@@ -42,6 +42,11 @@ public class MemberController {
         return "/member/list.html";
     }
 
+    @PostMapping("/logout")
+    public String logout() {
+        System.out.println("logout 들어봐");
+        return "/member/login.html";
+    }
 
 
     @GetMapping("/form")
@@ -72,7 +77,7 @@ public class MemberController {
     }
 
     @GetMapping("/modifyForm")
-    public String modifyMember(Model model) {
+    public String modifyMember(Model model,HttpServletRequest request) {
         List<Member> userList = userRepository.findAll();
         if(userList.size() > 0) {
             model.addAttribute("member",userList.get(0));

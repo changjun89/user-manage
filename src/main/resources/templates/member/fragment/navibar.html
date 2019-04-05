@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="navibar" class="navbar navbar-fixed-top header">
+        <div class="col-md-12">
+            <div class="navbar-header">
+
+                <a href="/" class="navbar-brand">anpan</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://changjun89.github.io/" target="_blank">blog</a></li>
+                            <li><a href="https://github.com/changjun89/" target="_blank">github</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/member/list"><i class="glyphicon glyphicon-user"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
