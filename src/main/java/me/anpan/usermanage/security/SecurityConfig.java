@@ -1,9 +1,7 @@
 package me.anpan.usermanage.security;
 
-import me.anpan.usermanage.web.CustomLoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -11,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -27,33 +24,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/member/modifyForm").authenticated()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/member/form","/member/create","/member/failLogin").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/member/login")
+                .loginPage("/member/loginform")
                 .loginProcessingUrl("/member/login")
                 .defaultSuccessUrl("/member/list")
                 .failureUrl("/member/failLogin")
-                .successHandler(successHandler())
                 .and()
                 //로그아웃
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-                .logoutSuccessUrl("/member/list")
+                .logoutSuccessUrl("/member/loginform")
                 .permitAll();
 
-    }
-
-
-
-
-    @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        return new CustomLoginSuccessHandler("/");//default로 이동할 url
     }
 
 

@@ -25,7 +25,7 @@ public class MemberController {
     @Autowired
     MemberRepository userRepository;
 
-    @GetMapping("/login")
+    @GetMapping("/loginform")
     public String loginPage(HttpServletRequest req) {
         String referer = req.getHeader("Referer");
         req.getSession().setAttribute("prevPage", referer);
@@ -40,12 +40,6 @@ public class MemberController {
     @PostMapping("/login")
     public String login() {
         return "/member/list.html";
-    }
-
-    @PostMapping("/logout")
-    public String logout() {
-        System.out.println("logout 들어봐");
-        return "/member/login.html";
     }
 
 

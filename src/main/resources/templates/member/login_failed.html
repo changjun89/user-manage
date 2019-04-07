@@ -33,14 +33,14 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-success clearfix pull-right">로그인</button>
+                <button class="btn btn-success ">
+                    <a th:href="@{/member/form}" role="button">회원가입</a>
+                </button>
                 <div class="clearfix"/>
             </form>
         </div>
     </div>
 </div>
-<form action="/member/logout" method="post" id="logoutForm">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
 <!-- script references -->
 <div th:include="/member/fragment/scriptRefer.html :: script"></div>
 </body>
