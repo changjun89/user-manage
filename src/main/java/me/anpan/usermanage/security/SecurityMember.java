@@ -9,7 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -22,7 +21,7 @@ public class SecurityMember extends User {
         super(member.getUserId(), member.getPassword(), makeGrantedAuthority(member.getRoles()));
     }
 
-    private static List<GrantedAuthority> makeGrantedAuthority(List<MemberRole> roles){
+    private static List<GrantedAuthority> makeGrantedAuthority(List<MemberRole> roles) {
         List<GrantedAuthority> list = new ArrayList<>();
         roles.forEach(role -> list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getRoleName())));
         return list;

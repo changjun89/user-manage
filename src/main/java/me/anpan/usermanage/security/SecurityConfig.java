@@ -19,14 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CustomUserDetailsService customUserDetailsService;
 
     @Override
-    public void configure(WebSecurity web) throws Exception
-    {
-        web.ignoring().antMatchers( "/css/**","/js/**", "/images/**","/fonts/**","/favicon.ico","/webjars/**");
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/css/**", "/js/**", "/images/**", "/fonts/**", "/favicon.ico", "/webjars/**");
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/member/loginform","/member/form","/member/create","/member/failLogin").permitAll()
+                .antMatchers("/member/loginform", "/member/form", "/member/create", "/member/failLogin").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
@@ -60,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler successHandler() {
         return new CustomLoginSuccessHandler("/member/list");
     }
-
 
 
 }
