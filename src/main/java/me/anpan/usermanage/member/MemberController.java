@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/member")
@@ -74,10 +75,9 @@ public class MemberController {
 
     @GetMapping("/modifyForm")
     public String modifyMember(Model model, HttpServletRequest request) {
-        List<Member> userList = userRepository.findAll();
-        if (userList.size() > 0) {
-            model.addAttribute("member", userList.get(0));
-        }
+        Long userId = Long.parseLong(request.getParameter("userId"));
+        Member member = userRepository.findById(userId).get();
+        model.addAttribute("member",member);
         return "/member/modify.html";
     }
 
@@ -87,7 +87,8 @@ public class MemberController {
             return "/member/login_failed.html";
         }
         userRepository.save(member);
-        return "";
+
+        return "redirect:/member/list";
     }
 
 
