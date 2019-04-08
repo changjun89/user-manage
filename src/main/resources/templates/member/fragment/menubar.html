@@ -3,12 +3,12 @@
 <body>
     <div th:fragment="menubar" class="collapse navbar-collapse" id="navbar-collapse2">
         <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="/">Posts</a></li>
-            <li><a href="/member/login" role="button">로그인</a></li>
-            <li><a href="/member/loginform" role="button">회원가입</a></li>
-            <li><a th:href="@{/member/logout}" role="button">로그아웃</a></li>
-            <li><a href="/member/modifyForm" role="button">개인정보수정</a></li>
-            <li><a href="/member/list" role="button">회원리스트</a></li>
+            <li th:if="${session.member != null}" class="active"><a href="/">Posts</a></li>
+            <li th:if="${session.member == null}"><a href="/member/loginform" role="button">로그인</a></li>
+            <li th:if="${session.member == null}"><a href="/member/form" role="button">회원가입</a></li>
+            <li th:if="${session.member != null}"><a th:href="@{/member/logout}" role="button">로그아웃</a></li>
+            <li th:if="${session.member != null}"><a href="/member/modifyForm" role="button">개인정보수정</a></li>
+            <li th:if="${session.member != null}"><a href="/member/list" role="button">회원리스트</a></li>
         </ul>
     </div>
 </body>
