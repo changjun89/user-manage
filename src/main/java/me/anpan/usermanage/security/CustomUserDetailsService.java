@@ -18,12 +18,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Member> byUserId = memberRepository.findByUserId(username);
-        if(!byUserId.isPresent()) {
+        Member member = memberRepository.findByUserId(username);
+        if(member == null) {
             throw new UsernameNotFoundException(username + "사용자 정보가 올바르지 않습니다.");
         }
-        return memberRepository.findByUserId(username)
-                        .filter(m -> m != null)
-                        .map(m -> new SecurityMember(m)).get();
+        return new SecurityMember(memberRepository.findByUserId(username));
     }
 }

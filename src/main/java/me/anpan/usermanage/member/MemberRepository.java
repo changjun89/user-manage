@@ -12,5 +12,5 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Long> {
     @Query("select a FROM Member a WHERE a.userId=:username")
-    public Optional<Member> findByUserId(String username);
+    public Member findByUserId(String username);
 }

@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -27,8 +28,6 @@ public class MemberController {
 
     @GetMapping("/loginform")
     public String loginPage(HttpServletRequest req) {
-        String referer = req.getHeader("Referer");
-        req.getSession().setAttribute("prevPage", referer);
         return "/member/login.html";
     }
 
@@ -38,7 +37,12 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login() {
+    public String login(Member member ,BindingResult result,
+                        HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return "/member/login_failed.html";
+        }
+        request.getSession().setAttribute("member",member);
         return "/member/list.html";
     }
 
