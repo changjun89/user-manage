@@ -16,7 +16,6 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 
     public CustomLoginSuccessHandler(String s) {
         setDefaultTargetUrl(s);
-
     }
 
     @Override
@@ -25,6 +24,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         SecurityMember principal = (SecurityMember) authentication.getPrincipal();
         Member member = repository.findByUserId(principal.getUsername());
         httpServletRequest.getSession().setAttribute("member", member);
+        super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
 
     }
 }

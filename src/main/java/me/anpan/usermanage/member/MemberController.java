@@ -41,8 +41,9 @@ public class MemberController {
         if (result.hasErrors()) {
             return "/member/login_failed.html";
         }
+        System.out.println("login controller");
         request.getSession().setAttribute("member", member);
-        return "/member/list.html";
+        return "redirect:/member/list";
     }
 
 
