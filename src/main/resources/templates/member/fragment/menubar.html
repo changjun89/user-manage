@@ -9,6 +9,7 @@
             <li th:if="${session.member != null}"><a th:href="@{/member/logout}" role="button">로그아웃</a></li>
             <li th:if="${session.member != null}"><a href="/member/modifyForm" role="button">개인정보수정</a></li>
             <li th:if="${session.member != null}"><a href="/member/list" role="button">회원리스트</a></li>
+            <li th:if="${session.member != null}"><a href="/todo/list" role="button">Todo</a></li>
         </ul>
     </div>
 </body>
